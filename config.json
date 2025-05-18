@@ -1,0 +1,9 @@
+{
+    "youtube_api_key": "YOUTUBE_API_KEY",
+    "instagram": {
+        "username": "INSTAGRAM_USERNAME",
+        "password": "INSTAGRAM_PASSWORD"
+    },
+    "thumbnail_directory": "thumbnails",
+    "output_file": "metadata.csv"
+} 

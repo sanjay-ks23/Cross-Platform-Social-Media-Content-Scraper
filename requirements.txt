@@ -1,0 +1,8 @@
+
+pandas
+requests
+tqdm
+asyncio
+playwright
+google-api-python-client 
+python-dateutil 
