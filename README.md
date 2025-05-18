@@ -1,6 +1,6 @@
-# Cross-media Social Media Content Scraper for SlateMate
+# Cross-media Social Media Content Scraper
 
-A powerful and efficient social media content scraper that collects data from Instagram and YouTube while respecting platform terms of service.
+A powerful and efficient social media content scraper that collects data from Instagram and YouTube.
 
 ## Overview
 
@@ -18,7 +18,7 @@ This is a Python-based tool designed to scrape content from Instagram hashtags a
   - Author/username
   - Timestamp
   - Like count
-  - Image URL
+  - Image URL(Also tried to scrape comments but comments count couldn't be scraped)
   - Thumbnail image
 
 ### YouTube
@@ -57,7 +57,7 @@ The system uses asynchronous programming (asyncio) for efficient network operati
 
 1. **Browser Automation Migration**
    - Initially used Selenium but switched to Playwright due to better performance and reliability
-   - Required significant code restructuring and adaptation to Playwright's API
+   - Required significant code restructuring and adaptation to Playwright
    - Solution: Implemented a modular design that made the transition smoother
 
 2. **Text Processing Issues**
@@ -74,28 +74,19 @@ The system uses asynchronous programming (asyncio) for efficient network operati
 - No significant challenges encountered
 - YouTube Data API provided stable and reliable access to required data
 
-## Features Implemented
-
-- Multi-platform support for both YouTube and Instagram
-- Headless browser mode for Instagram scraping
-- Intelligent page scroll detection
-- CLI progress bar and detailed logging
-- Comprehensive error handling and retry mechanisms
-- Unified data storage in CSV format
-
 ## Installation
 
 1. Clone the repository:
    ```
    git clone https://github.com/y/SlateMate.git
-   cd SlateMate
+   cd "YOUR_FOLDER_NAME"
    ```
 
 2. Create and activate a virtual environment:
    ```
    python -m venv venv
    # On Windows
-   venv\Scripts\activate
+   venv\Scripts\activate or by navigating to the activate.ps1 file and running it manually 
    # On macOS/Linux
    source venv/bin/activate
    ```
@@ -104,38 +95,45 @@ The system uses asynchronous programming (asyncio) for efficient network operati
    ```
    pip install -r requirements.txt
    ```
-## Getting YouTube API Key
 
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select an existing one
-3. Enable the YouTube Data API v3:
-   - Navigate to "APIs & Services" > "Library"
-   - Search for "YouTube Data API v3"
-   - Click "Enable"
-4. Create credentials:
-   - Go to "APIs & Services" > "Credentials"
-   - Click "Create Credentials" > "API Key"
-   - Copy the generated API key
-5. Add the API key to your `config.json` file
-
-
-4. Create a `config.json` file with your credentials:
-   ```json
-   {
-     "instagram": {
-       "username": "your_instagram_username",
-       "password": "your_instagram_password"
-     },
-     "youtube_api_key": "your_youtube_api_key",
-     "thumbnail_directory": "thumbnails"
-   }
-   ```
-
-5. Install Playwright browsers:
+4. Install Playwright browsers:
    ```
    playwright install chromium
    ```
 
+## Getting YouTube API Key
+Go to the [Google Cloud Console](https://console.cloud.google.com/)
+Create a new project or select an existing one
+Enable the YouTube Data API v3:
+   - Navigate to "APIs & Services" > "Library"
+   - Search for "YouTube Data API v3"
+   - Click "Enable"
+Create credentials:
+   - Go to "APIs & Services" > "Credentials"
+   - Click "Create Credentials" > "API Key"
+   - Copy the generated API key
+4. Create a `config.json` file with your credentials:
+   ```json
+   {
+     "instagram": {
+       "username": "INSTAGRAM_USERNAME",
+       "password": "INSTAGRAM_PASSWORD"
+     },
+     "youtube_api_key": "YOUTUBE_API_KEY", #Paste your copied API key here 
+     "thumbnail_directory": "thumbnails"
+     "output_file": "metadata.csv"
+   }
+   ```
+
+## Features Implemented
+
+- Multi-platform support for both YouTube and Instagram
+- Headless browser mode for Instagram scraping
+- Intelligent page scroll detection
+- CLI progress bar and detailed logging
+- Comprehensive error handling and retry mechanisms
+- Unified data storage in CSV format
+  
 ## Usage
 
 Run the scraper using the command-line interface:
@@ -157,6 +155,7 @@ python scrape_posts.py --platform youtube --target "machine Learning" --limit 25
 - `--platform`: The platform to scrape (Required, choices: 'instagram', 'youtube')
 - `--target`: Search term or hashtag to scrape (Required)
 - `--limit`: Maximum number of posts to retrieve (Optional, default: 50)
+
 
 ## Data Storage
 
